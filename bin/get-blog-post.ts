@@ -221,7 +221,7 @@ class NotionProcessor {
 
     if (!isParent) {
       markdownPages[slug] = output
-      console.log(`=> Imported Notion Database`);
+      console.debug(`=> Imported Notion ${slug}`);
     }
     return slug;
   }
@@ -247,7 +247,7 @@ async function init(): Promise<void> {
     })
   );
 
-  console.log(`Imported ${Object.keys(markdownPages).length} pages`);
+  console.log(`Imported ${Object.keys(markdownPages).length} notion pages`);
 }
 
 init();
