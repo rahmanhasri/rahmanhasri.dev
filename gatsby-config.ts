@@ -1,21 +1,30 @@
 import path from 'path';
-import { GatsbyConfig } from 'gatsby';
 
 // @ts-check
 /**
  * @type {import('gatsby').GatsbyConfig}
  */
 
-const config: GatsbyConfig = {
+const config = {
   siteMetadata: {
     title: 'rahmanhasri',
     siteUrl: 'https://www.yourdomain.tld',
   },
   plugins: [
-    'gatsby-plugin-image',
-    'gatsby-plugin-sharp',
-    'gatsby-plugin-root-import',
-    'gatsby-transformer-remark',
+    {
+      resolve: `gatsby-plugin-typescript`,
+      options: {
+        isTSX: true,
+        jsxPragma: `jsx`,
+        allExtensions: true,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-typography`,
+      options: {
+        pathToConfigModule: path.join(__dirname, 'src', 'utils', 'typography'),
+      },
+    },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -30,6 +39,9 @@ const config: GatsbyConfig = {
         path: path.join(__dirname, 'src', 'pages'),
       },
     },
+    'gatsby-plugin-image',
+    'gatsby-plugin-sharp',
+    'gatsby-transformer-remark',
   ],
 };
 
